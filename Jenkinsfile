@@ -14,8 +14,8 @@ pipeline {
             steps {
                 echo 'Installing dependencies...'
                 bat '''
-                "C:\\Users\\Mohammed Afshan\\AppData\\Local\\Programs\\Python\\Python314\\python.exe" -m pip install --upgrade pip
-                "C:\\Users\\Mohammed Afshan\\AppData\\Local\\Programs\\Python\\Python314\\python.exe" -m pip install -r requirements.txt
+                    "C:\\Users\\Mohammed Afshan\\AppData\\Local\\Programs\\Python\\Python314\\python.exe" -m pip install --upgrade pip
+                    "C:\\Users\\Mohammed Afshan\\AppData\\Local\\Programs\\Python\\Python314\\python.exe" -m pip install -r requirements.txt
                 '''
             }
         }
@@ -23,18 +23,14 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Running tests...'
-                bat '''
-                "C:\\Users\\Mohammed Afshan\\AppData\\Local\\Programs\\Python\\Python314\\python.exe" -m unittest discover
-                '''
+                bat '"C:\\Users\\Mohammed Afshan\\AppData\\Local\\Programs\\Python\\Python314\\python.exe" -m pytest test_app.py -v'
             }
         }
 
         stage('Deploy - Execute Script') {
             steps {
-                echo 'Running application...'
-                bat '''
-                "C:\\Users\\Mohammed Afshan\\AppData\\Local\\Programs\\Python\\Python314\\python.exe" app.py
-                '''
+                echo 'Running the application...'
+                bat '"C:\\Users\\Mohammed Afshan\\AppData\\Local\\Programs\\Python\\Python314\\python.exe" app.py'
             }
         }
     }
