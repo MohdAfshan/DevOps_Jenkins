@@ -13,7 +13,7 @@ pipeline {
         stage('Build - Install Dependencies') {
             steps {
                 echo 'Installing Python dependencies...'
-                sh '''
+                bat '''
                     python3 -m venv venv
                     . venv/bin/activate
                     pip install -r requirements.txt
@@ -24,7 +24,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Running tests with pytest...'
-                sh '''
+                bat '''
                     . venv/bin/activate
                     pytest test_app.py -v
                 '''
@@ -34,7 +34,7 @@ pipeline {
         stage('Deploy - Execute Script') {
             steps {
                 echo 'Deploying / Running the application...'
-                sh '''
+                bat '''
                     . venv/bin/activate
                     python3 app.py
                 '''
