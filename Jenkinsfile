@@ -12,10 +12,10 @@ pipeline {
 
         stage('Build - Install Dependencies') {
             steps {
-                echo 'Installing Python dependencies...'
+                echo 'Installing dependencies...'
                 bat '''
-                    python -m pip install --upgrade pip
-                    pip install -r requirements.txt
+                "C:\\Users\\Mohammed Afshan\\AppData\\Local\\Programs\\Python\\Python314\\python.exe" -m pip install --upgrade pip
+                "C:\\Users\\Mohammed Afshan\\AppData\\Local\\Programs\\Python\\Python314\\python.exe" -m pip install -r requirements.txt
                 '''
             }
         }
@@ -24,16 +24,16 @@ pipeline {
             steps {
                 echo 'Running tests...'
                 bat '''
-                    python -m unittest discover
+                "C:\\Users\\Mohammed Afshan\\AppData\\Local\\Programs\\Python\\Python314\\python.exe" -m unittest discover
                 '''
             }
         }
 
         stage('Deploy - Execute Script') {
             steps {
-                echo 'Running the application...'
+                echo 'Running application...'
                 bat '''
-                    python app.py
+                "C:\\Users\\Mohammed Afshan\\AppData\\Local\\Programs\\Python\\Python314\\python.exe" app.py
                 '''
             }
         }
@@ -44,7 +44,7 @@ pipeline {
             echo '✅ Pipeline finished successfully!'
         }
         failure {
-            echo '❌ Pipeline failed. Check the Console Output for errors.'
+            echo '❌ Pipeline failed. Check logs.'
         }
     }
 }
